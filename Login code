@@ -1,0 +1,37 @@
+import tkinter as tk
+
+# LogIn Window
+window1 = tk.Tk()
+window1.title('Tickify')
+window1.geometry('800x500')
+
+# Frame to group all the thing (LogIn Window)
+frame1 = tk.Frame(window1)
+frame1.place(relx=0.5, rely=0.1, anchor='n')
+
+# Welcome text (LogIn Window)
+welcome1_label = tk.Label(frame1, text='Welcome to Tickify', font=('Arial', 20))
+welcome1_label.grid(row=0, column=0, columnspan=2, pady=30)
+
+# Email & Password (LogIn Window)
+email1_label = tk.Label(frame1, text='Email', font=('Arial', 12))
+email1_label.grid(row=1, column=0, pady=10, sticky='e')
+
+email1_entry = tk.Entry(frame1, font=('Arial', 12))
+email1_entry.grid(row=1, column=1)
+
+password1_label = tk.Label(frame1, text='Password', font=('Arial', 12))
+password1_label.grid(row=2, column=0, pady=10, sticky='e')
+
+password1_entry = tk.Entry(frame1, font=('Arial', 12), show='*')
+password1_entry.grid(row=2, column=1)
+
+# Button of LogIn & SignUp (LogIn Window)
+signup1_button = tk.Button(frame1, text='Sign Up', font=('Arial', 10), width=6, height=1)
+signup1_button.grid(row=3, column=1, pady=25, sticky='w')
+
+login1_button = tk.Button(frame1, text='Log In', font=('Arial', 10), width=6, height=1)
+login1_button.grid(row=3, column=1, padx=100)
+
+# Start the LogIn Window
+window1.mainloop()
