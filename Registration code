@@ -45,3 +45,23 @@ submit2_button.grid(row=5, column=0, columnspan=2, pady=25)
 
 # Start the SignUp Window
 window2.mainloop()
+
+import sqlite3
+
+connection = sqlite3.connect('login and registration.db')
+
+cursor = connection.cursor()
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL
+)''')
+
+username = 'example_username'
+password = 'example_password'
+cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+connection.commit()
+
+cursor.close()
+connection.close()
