@@ -233,7 +233,8 @@ def switch_main_window():
         username4_label.config(text=user_name)
         welcome_window.withdraw()
         main_window.deiconify()
-        show_tasks()     
+        show_tasks() 
+        add_task4()    
     else:
         error1_label.config(text='Incorrect Username or Password')
 
@@ -854,17 +855,19 @@ def show_tasks():
         ########################################
         # Task Frame
         task_frame = tk.Frame(task_container4_frame, bg=task[7], height=255, width=250)
-        #task_frame.pack(side=tk.LEFT, padx=10, pady=5)
+
+        # sorting task by due date and priority
         if(task[5] == None):
-            task_frame.grid(column=0)
+            row_index +=1
+            task_frame.grid(row=row_index, column=0)
+            
         elif(task[5] != previous_task_date):
             column_index +=1
             row_index = 0
             task_frame.grid(row=row_index, column=column_index)               
         else:
             row_index +=1
-            task_frame.grid(row=row_index, column=column_index)
-            
+            task_frame.grid(row=row_index, column=column_index)       
 
         # Delete
         delete_button = tk.Button(task_frame, border=0, bg='#D9F6E8', image=delete4_tk_image, text=task[0], command=lambda: delete_task(task[0]))
@@ -1077,6 +1080,8 @@ def show_tasks():
         previous_task_date = task[5]
             
         print(task)
+
+        add_task4()
        
 
 def add_task4():
@@ -1397,7 +1402,7 @@ def add_task4():
     task_frame = tk.Frame(task_container4_frame, bg='#D9F6E8', height=255, width=250) 
     # remove pack() and used grid instead due to sorting use case
     # never mix pack() and grid() together in same main window
-    task_frame.grid()
+    task_frame.grid(row=0, column=0)
 
     task_created_time = datetime.datetime.now()
 
