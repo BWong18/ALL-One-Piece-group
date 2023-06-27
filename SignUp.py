@@ -1,0 +1,67 @@
+import tkinter as tk
+
+# SignUp Window
+window2 = tk.Tk()
+window2.title('Tickify')
+window2.geometry('800x500')
+
+# Frame to group all the thing (SignUp Window)
+frame2 = tk.Frame(window2)
+frame2.place(relx=0.5, rely=0.1, anchor='n')
+
+# Registration Text (SignUp Window)
+register2_label = tk.Label(frame2, text='Sign Up', font=('Arial', 20))
+register2_label.grid(row=0, column=0, columnspan=2, pady=30)
+
+# Username & Email (SignUp Window)
+username2_label = tk.Label(frame2, text='Username', font=('Arial', 12))
+username2_label.grid(row=1, column=0, pady=10, sticky='e', padx=30)
+
+username2_entry = tk.Entry(frame2, font=('Arial', 12))
+username2_entry.grid(row=1, column=1)
+
+email2_label = tk.Label(frame2, text='Email', font=('Arial', 12))
+email2_label.grid(row=2, column=0, pady=10, sticky='e', padx=30)
+
+email2_entry = tk.Entry(frame2, font=('Arial', 12))
+email2_entry.grid(row=2, column=1)
+
+# Password & Confirmed Password (SignUp Window)
+password2_label = tk.Label(frame2, text='Password', font=('Arial', 12))
+password2_label.grid(row=3, column=0, pady=10, sticky='e', padx=30)
+
+password2_entry = tk.Entry(frame2, font=('Arial', 12), show='*')
+password2_entry.grid(row=3, column=1)
+
+confirmedPassword2_label = tk.Label(frame2, text='Confirmed Password', font=('Arial', 12))
+confirmedPassword2_label.grid(row=4, column=0, pady=10, sticky='e', padx=30)
+
+confirmedPassword2_entry = tk.Entry(frame2, font=('Arial', 12), show='*')
+confirmedPassword2_entry.grid(row=4, column=1)
+
+# Button Submit (SignUp Window)
+submit2_button = tk.Button(frame2, text='Submit', font=('Arial', 10), width=6, height=1)
+submit2_button.grid(row=5, column=0, columnspan=2, pady=25)
+
+# Start the SignUp Window
+window2.mainloop()
+
+import sqlite3
+
+connection = sqlite3.connect('login and registration.db')
+
+cursor = connection.cursor()
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL
+)''')
+
+username = 'example_username'
+password = 'example_password'
+cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+connection.commit()
+
+cursor.close()
+connection.close()
